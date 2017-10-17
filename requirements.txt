@@ -2,7 +2,7 @@ numpy
 scipy
 matplotlib
 pillow
-gym
-vizdoom
+scikit-image
 jupyter
-ppaquette-gym-doom
+pandas
+lxml
