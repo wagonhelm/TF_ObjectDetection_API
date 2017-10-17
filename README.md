@@ -99,6 +99,7 @@ pip3 install tensorflow jupyter
 ```bash
 cd TF_ObjectDetection_API
 git clone https://github.com/tensorflow/models.git
+```
 
 ```bash
 cd models/research/
