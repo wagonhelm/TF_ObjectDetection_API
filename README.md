@@ -9,10 +9,11 @@ This repository has the code from my O'Reilly article '' published on.
 * [NumPy](http://www.numpy.org/)
 * [Scipy](https://www.scipy.org/)
 * [Matplotlib](http://matplotlib.org/)
+* [Scikit-Image](http://scikit-image.org/)
+* [Pandas](http://pandas.pydata.org/)
+* [lxml](http://lxml.de/)
 
-
-
-There are two ways you can install these packages: by using Docker or by using native Python 3.5.  If you use Docker you will not be able to render the environment.  
+There are two ways you can install these packages: by using Docker or by using native Python 3.5.
 
 ### Using Docker
 
@@ -57,7 +58,7 @@ There are two ways you can install these packages: by using Docker or by using n
     `Press CTL+B` then `C` to open a new tmux window, then
     
     ```bash
-    tensorboard --logdir='/tmp/dpg'
+    tensorboard --logdir='data'
     ```
     To switch windows `Press CTL+B` then `window #` 
  
@@ -80,6 +81,7 @@ git clone https://github.com/wagonhelm/TF_ObjectDetection_API.git
 
 ```bash
 cd TF_ObjectDetection_API
+# Requires sudo if not in a virtual environment
 pip3 install -r requirements.txt
 pip3 install tensorflow jupyter
 ```
@@ -90,7 +92,7 @@ jupyter notebook
 ```
 5. Launch Tensorboard
 ```bash
-tensorboard --logdir='/tmp/dpg'
+tensorboard --logdir='data'
 ```
 Once both jupyter and tensorboard are running, using your browser, navigate to the URLs shown in the terminal output if those don't work  try http://localhost:8888/ for Jupyter Notebook and http://localhost:6006/ for Tensorboard.
 
