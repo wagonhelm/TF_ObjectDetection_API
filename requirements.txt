@@ -1,0 +1,8 @@
+numpy
+scipy
+matplotlib
+pillow
+gym
+vizdoom
+jupyter
+ppaquette-gym-doom
