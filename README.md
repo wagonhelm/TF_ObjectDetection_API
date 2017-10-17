@@ -49,7 +49,16 @@ There are two ways you can install these packages: by using Docker or by using n
     ```
     if you run into permission problems.
 
-6. Launch Jupyter and Tensorboard both by using tmux 
+6. Install TensorFlow Object Detection API
+    ```bash
+    cd models/research/
+    protoc object_detection/protos/*.proto --python_out=.
+    export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim
+    cd ..
+    cd ..
+    ```
+
+7. Launch Jupyter and Tensorboard both by using tmux 
     ```bash
     tmux
     
@@ -62,7 +71,7 @@ There are two ways you can install these packages: by using Docker or by using n
     ```
     To switch windows `Press CTL+B` then `window #` 
  
-    Once both jupyter and tensorboard are running, using your browser, navigate to the URLs shown in the terminal output if those don't work  try http://localhost:8888/ for Jupyter Notebook and http://localhost:6006/ for Tensorboard.
+    Once both jupyter and tensorboard are running, using your browser, navigate to the URLs shown in the terminal output if those don't work  try http://localhost:8888/ for Jupyter Notebook and http://localhost:6006/ for Tensorboard.  I had issues with using TensorBoard with Firefox when launched from Docker.
     
 ### Using Native Python 3
 
@@ -85,12 +94,25 @@ cd TF_ObjectDetection_API
 pip3 install -r requirements.txt
 pip3 install tensorflow jupyter
 ```
+4. Clone TensorFlow Models and Install Object Detection API
+
+```bash
+cd TF_ObjectDetection_API
+git clone https://github.com/tensorflow/models.git
+
+```bash
+cd models/research/
+protoc object_detection/protos/*.proto --python_out=.
+export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim
+cd ..
+cd ..
+```
 
 4. Launch Jupyter
 ```bash
 jupyter notebook
 ```
-5. Launch Tensorboard
+5. Launch Tensorboard In New Terminal
 ```bash
 tensorboard --logdir='data'
 ```
