@@ -4,7 +4,7 @@ RUN git clone https://github.com/wagonhelm/TF_ObjectDetection_API.git /notebooks
 RUN git clone https://github.com/tensorflow/models.git /notebooks/object/models
 WORKDIR "/notebooks/object"
 RUN pip install -r ./requirements.txt
-RUN cd models/research/
-RUN protoc object_detection/protos/*.proto --python_out=.
-RUN export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim
+RUN cd models/research/ \
+protoc object_detection/protos/*.proto --python_out=. \
+export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim
 CMD ["/run_jupyter.sh"]
