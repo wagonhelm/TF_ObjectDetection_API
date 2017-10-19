@@ -94,7 +94,7 @@ cd TF_ObjectDetection_API
 pip3 install -r requirements.txt
 pip3 install tensorflow jupyter
 ```
-4. Clone TensorFlow Models and Install Object Detection API
+4. Clone TensorFlow Models into repository directory and Install Object Detection API
 
 ```bash
 cd TF_ObjectDetection_API
