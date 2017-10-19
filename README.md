@@ -12,6 +12,7 @@ This repository has the code from my O'Reilly article '' published on.
 * [Scikit-Image](http://scikit-image.org/)
 * [Pandas](http://pandas.pydata.org/)
 * [lxml](http://lxml.de/)
+* [protobuf](https://github.com/google/protobuf)
 
 There are two ways you can install these packages: by using Docker or by using native Python 3.5.
 
