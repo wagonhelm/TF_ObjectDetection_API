@@ -94,7 +94,7 @@ cd TF_ObjectDetection_API
 pip3 install -r requirements.txt
 pip3 install tensorflow jupyter
 ```
-4. Clone TensorFlow Models into repository directory and Install Object Detection API
+4. Clone TensorFlow Models Into Repository Directory and Install Object Detection API
 
 ```bash
 cd TF_ObjectDetection_API
@@ -108,7 +108,7 @@ export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim
 cd ..
 cd ..
 ```
-You will have to run this command every time you close your terminal unless you add the the path to slim to your .bashrc file
+You will have to run this command every time you close your terminal unless you add the the path to slim to your `.bashrc` file
 
 4. Launch Jupyter
 ```bash
