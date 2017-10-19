@@ -78,7 +78,7 @@ There are two ways you can install these packages: by using Docker or by using n
 1. Install system requirements
 
 ```bash
-sudo apt-get install git cmake zlib1g-delibjpeg-dev libboost-all-dev libsdl2-dev wget unzip gitboostbuild-essential zlib1g-dev libsdl2-dev libjpeg-dev nasm tar libbz2-dev libgtk2.0-dev cmake libfluidsynth-dev libgme-dev libopenal-dev timidity libwildmidi-dev python3-pip python3-dev python3-wheel
+sudo apt-get install -y git-core wget protobuf-compiler 
 ```
 2. Download and unzip [this entire repo from GitHub](https://github.com/wagonhelm/TF_ObjectDetection_API), either interactively, or by entering
 
@@ -108,6 +108,7 @@ export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim
 cd ..
 cd ..
 ```
+You will have to run this command every time you close your terminal unless you add the the path to slim to your .bashrc file
 
 4. Launch Jupyter
 ```bash
