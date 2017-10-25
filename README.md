@@ -1,6 +1,6 @@
 # TensorFlow Object Detection API Tutorial
 
-This repository has the code from my O'Reilly article '' published on.
+This repository has the code from my [O'Reilly article](https://www.oreilly.com/ideas/object-detection-with-tensorflow)  published on October 25, 2017.
 
 
 ## Required Packages
