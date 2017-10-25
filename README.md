@@ -102,6 +102,8 @@ cd TF_ObjectDetection_API
 git clone https://github.com/tensorflow/models.git
 ```
 
+You will have to run this command every time you close your terminal unless you add the the path to slim to your `.bashrc` file
+
 ```bash
 cd models/research/
 protoc object_detection/protos/*.proto --python_out=.
@@ -109,7 +111,6 @@ export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim
 cd ..
 cd ..
 ```
-You will have to run this command every time you close your terminal unless you add the the path to slim to your `.bashrc` file
 
 4. Launch Jupyter
 ```bash
