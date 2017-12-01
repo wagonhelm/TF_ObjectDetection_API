@@ -1,5 +1,6 @@
 models*
-
+images/*.png
+images/*.jpg
 *.py[cod]
 
 .ipynb_checkpoints
