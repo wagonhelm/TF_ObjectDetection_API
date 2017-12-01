@@ -1,0 +1,5 @@
+models*
+
+*.py[cod]
+
+.ipynb_checkpoints
