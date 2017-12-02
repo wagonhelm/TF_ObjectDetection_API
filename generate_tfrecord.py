@@ -12,27 +12,38 @@ import tensorflow as tf
 
 from PIL import Image
 from object_detection.utils import dataset_util
-from collections import namedtuple, OrderedDict
+from collections import namedtuple
 
+tf.logging.set_verbosity(tf.logging.INFO)
+
+flags = tf.app.flags
+flags.DEFINE_string('data_path', '', 'where to save train.record')
+flags.DEFINE_string('images_path', '', 'path to resized images folder')
+flags.DEFINE_string('csv_path', '', 'path to csv bounding boxes')
+
+
+FLAGS = flags.FLAGS
 
 # Add more class labels as needed, make sure to start at 1
 def class_text_to_int(row_label):
-    if row_label == 'wPawn':
-        return 1
-    if row_label == 'bPawn':
-        return 2 
-    else:
-        None
+  if row_label == 'cylinder':
+    return 1
+  if row_label == 'sphere':
+    return 2 
+  if row_label == 'box':
+    return 3 
+  else:
+    None
 
 def split(df, group):
-    data = namedtuple('data', ['filename', 'object'])
-    gb = df.groupby(group)
-    return [data(filename, gb.get_group(x)) for filename, x in zip(gb.groups.keys(), gb.groups)]
+  data = namedtuple('data', ['filename', 'object'])
+  gb = df.groupby(group)
+  return [data(filename, gb.get_group(x)) for filename, x in zip(gb.groups.keys(), gb.groups)]
 
 
 def create_tf_example(group, path):
     with tf.gfile.GFile(os.path.join(path, '{}'.format(group.filename)), 'rb') as fid:
-        encoded_jpg = fid.read()
+      encoded_jpg = fid.read()
     encoded_jpg_io = io.BytesIO(encoded_jpg)
     image = Image.open(encoded_jpg_io)
     width, height = image.size
@@ -47,12 +58,12 @@ def create_tf_example(group, path):
     classes = []
 
     for index, row in group.object.iterrows():
-        xmins.append(row['xmin'] / width)
-        xmaxs.append(row['xmax'] / width)
-        ymins.append(row['ymin'] / height)
-        ymaxs.append(row['ymax'] / height)
-        classes_text.append(row['class'].encode('utf8'))
-        classes.append(class_text_to_int(row['class']))
+      xmins.append(row['xmin'] / width)
+      xmaxs.append(row['xmax'] / width)
+      ymins.append(row['ymin'] / height)
+      ymaxs.append(row['ymax'] / height)
+      classes_text.append(row['class'].encode('utf8'))
+      classes.append(class_text_to_int(row['class']))
 
     tf_example = tf.train.Example(features=tf.train.Features(feature={
         'image/height': dataset_util.int64_feature(height),
@@ -72,17 +83,17 @@ def create_tf_example(group, path):
 
 
 def main(_):
-    for i in ['test', 'train']:
-        writer = tf.python_io.TFRecordWriter(i+'.record')
-        path = os.path.join(os.getcwd(), 'images/'+i)
-        examples = pd.read_csv('data/'+i+'.csv')
-        grouped = split(examples, 'filename')
-        for group in grouped:
-            tf_example = create_tf_example(group, path)
-            writer.write(tf_example.SerializeToString())
-        writer.close()
-        print('Successfully created the '+i+ ' TFRecords')
+#    for i in ['test', 'train']:
+  writer = tf.python_io.TFRecordWriter(os.path.join(FLAGS.data_path,'train.record'))
+  path = FLAGS.images_path
+  examples = pd.read_csv(FLAGS.csv_path)
+  grouped = split(examples, 'filename')
+  for group in grouped:
+    tf_example = create_tf_example(group, path)
+    writer.write(tf_example.SerializeToString())
+  writer.close()
+  print('Successfully created the train TFRecords')
 
 
 if __name__ == '__main__':
-    tf.app.run()
+  tf.app.run()
