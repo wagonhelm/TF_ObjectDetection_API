@@ -2,7 +2,7 @@ models*
 images/*.png
 images/*.jpg
 *.py[cod]
-data/train.record
+#data/train.record
 
 .ipynb_checkpoints
 ssd_mobilenet_v1_coco*
