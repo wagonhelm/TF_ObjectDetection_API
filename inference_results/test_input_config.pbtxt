@@ -1,0 +1,2 @@
+label_map_path: '/home/atabak/shape-detection/inference_data/label_map.pbtxt'
+tf_record_input_reader: { input_path: '/home/atabak/shape-detection/inference_results/test_detections.tfrecord-00000-of-00001' }
