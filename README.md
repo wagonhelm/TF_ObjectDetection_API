@@ -123,4 +123,49 @@ tensorboard --logdir='data'
 Once both jupyter and tensorboard are running, using your browser, navigate to the URLs shown in the terminal output if those don't work  try http://localhost:8888/ for Jupyter Notebook and http://localhost:6006/ for Tensorboard.
 
 
-    
+    System information
+
+What is the top-level directory of the model you are using:
+research/
+Have I written custom code (as opposed to using a stock example script provided in TensorFlow):
+Yes
+OS Platform and Distribution (e.g., Linux Ubuntu 16.04):
+Linux Ubuntu 16.04
+TensorFlow installed from (source or binary):
+No
+CUDA/cuDNN version:
+8.0/6.0
+GPU model and memory:
+1080 ti
+Exact command to reproduce:
+python -m object_detection/metrics/offline_eval_map_corloc --eval_dir=PATH/TO/EVAL_DIR --eval_config_path=PATH/TO/EVAL_CONGIF.pbtxt --input_config_path=PATH/TO/INPUT_CONFIG.pbtxt
+
+You can obtain the TensorFlow version with
+
+python -c "import tensorflow as tf; print(tf.GIT_VERSION, tf.VERSION)"
+('v1.4.0-rc1-11-g130a514', '1.4.0')
+
+Describe the problem
+
+object_detection_evaluation states that having the field standard_fields.InputDataFields.groundtruth_difficult is optional. However, it checks whether the field exists or not like this:
+groundtruth_dict[standard_fields.InputDataFields.groundtruth_difficult].size
+For me, I just removed the .size part and the error got away but you may want to do it in a better way.
+
+INFO:tensorflow:Processing file: /PATH/TO/test_detections.tfrecord-00000-of-00001
+INFO:tensorflow:Processed 0 images...
+Traceback (most recent call last):
+File "/anaconda2/lib/python2.7/runpy.py", line 174, in _run_module_as_main
+"main", fname, loader, pkg_name)
+File "/anaconda2/lib/python2.7/runpy.py", line 72, in _run_code
+exec code in run_globals
+File "models/research/object_detection/metrics/offline_eval_map_corloc.py", line 173, in 
+tf.app.run(main)
+File "/anaconda2/lib/python2.7/site-packages/tensorflow/python/platform/app.py", line 48, in run
+_sys.exit(main(_sys.argv[:1] + flags_passthrough))
+File "models/research/object_detection/metrics/offline_eval_map_corloc.py", line 166, in main
+metrics = read_data_and_evaluate(input_config, eval_config)
+File "models/research/object_detection/metrics/offline_eval_map_corloc.py", line 124, in read_data_and_evaluate
+decoded_dict)
+File "object_detection/utils/object_detection_evaluation.py", line 174, in add_single_ground_truth_image_info
+(groundtruth_dict[standard_fields.InputDataFields.groundtruth_difficult]
+AttributeError: 'NoneType' object has no attribute 'size'
