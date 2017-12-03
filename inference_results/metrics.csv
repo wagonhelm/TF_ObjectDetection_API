@@ -1,0 +1,4 @@
+PASCAL/PerformanceByCategory/AP@0.3IOU/sphere,0.949861495845
+PASCAL/PerformanceByCategory/AP@0.3IOU/cylinder,0.706575583202
+PASCAL/PerformanceByCategory/AP@0.3IOU/box,0.849494872348
+PASCAL/Precision/mAP@0.3IOU,0.835310650465
