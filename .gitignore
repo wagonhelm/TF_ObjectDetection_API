@@ -6,3 +6,6 @@ images/*.jpg
 
 .ipynb_checkpoints
 ssd_mobilenet_v1_coco*
+inference_results/*.tfrecord*
+object_detection_graph/*
+train_dir/*
