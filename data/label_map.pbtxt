@@ -1,9 +1,14 @@
 item {
   id: 1
-  name: 'wPawn'
+  name: 'cylinder'
 }
 
 item {
   id: 2
-  name: 'bPawn'
+  name: 'sphere'
+}
+
+item {
+  id: 3
+  name: 'box'
 }
