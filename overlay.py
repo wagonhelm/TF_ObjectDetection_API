@@ -22,7 +22,6 @@ from object_detection.utils import label_map_util, visualization_utils
 tf.logging.set_verbosity(tf.logging.INFO)
 
 flags = tf.app.flags
-flags.DEFINE_string('frozen_graph', '', 'path to frozen_inference_graph.pb')
 flags.DEFINE_string('images_path', '', 'path to resized test images folder')
 flags.DEFINE_string('save_path', '', 'path to save infered bounding boxes')
 
