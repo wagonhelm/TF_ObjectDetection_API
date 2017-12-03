@@ -73,7 +73,7 @@ def main(_):
           np.squeeze(scores),
           category_index,
           use_normalized_coordinates=True,
-          line_thickness=0.5)
+          line_thickness=1)
       plt.figure(figsize=img_size)
       plt.imshow(image_np)
       plt.savefig(os.path.join(FLAGS.save_path,image_path), format='png', bbox_inches='tight')
