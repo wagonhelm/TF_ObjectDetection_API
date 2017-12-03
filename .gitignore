@@ -9,3 +9,5 @@ ssd_mobilenet_v1_coco*
 inference_results/*.tfrecord*
 object_detection_graph/*
 train_dir/*
+faster_rcnn_resnet50_lowproposals_coco_2017_11_08*
+ssd_mobilenet_v1_coco_11_06_2017*
