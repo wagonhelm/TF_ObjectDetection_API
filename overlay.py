@@ -10,7 +10,7 @@ Created on Sun Dec  3 15:39:18 2017
 from __future__ import division
 from __future__ import print_function
 from __future__ import absolute_import
-
+import cv2  
 import os
 import numpy as np
 import tensorflow as tf
@@ -66,17 +66,48 @@ def main(_):
       (boxes, scores, classes, num) = sess.run(
             [detection_boxes, detection_scores, detection_classes, num_detections],
             feed_dict={image_tensor: image_np_expanded})
-      visualization_utils.visualize_boxes_and_labels_on_image_array(
-          image_np,
-          np.squeeze(boxes),
-          np.squeeze(classes).astype(np.int32),
-          np.squeeze(scores),
-          category_index,
-          use_normalized_coordinates=True,
-          line_thickness=1)
-      plt.figure(figsize=img_size)
-      plt.imshow(image_np)
-      plt.savefig(os.path.join(FLAGS.save_path,image_path), format='png', bbox_inches='tight')
+
+      width=1920
+      height=1080
+      #NEW
+
+      font = cv2.FONT_HERSHEY_PLAIN
+      fontsize=2
+      fontweight=2
+      #img = cv2.imread(full_path,cv2.IMREAD_COLOR)
+      classes_text= np.squeeze(classes).astype(np.int32)
+      #print(classes_text)
+      for i in xrange(0,len(np.squeeze(boxes))):
+	bbox=np.squeeze(boxes)[i]
+        xmin=bbox[1]   
+        ymin=bbox[0]
+        xmax=bbox[3]
+        ymax=bbox[2]   
+        score=str("%.2f"%np.squeeze(scores)[i])
+        if(np.squeeze(scores)[i]<=0.75) :
+          continue
+
+        if classes_text[i]==1:
+          class_='cylinder'
+          color=(0,255,0)
+        elif classes_text[i]==2:
+          class_='sphere'
+          color=(255,0,0)
+        elif classes_text[i]==3:
+          class_='box'
+          color=(0,0,255)
+        cv2.rectangle(image_np,(int(xmin*width),int(ymin*height)),(int(xmax*width),int(ymax*height)),color,2)
+        cv2.putText(image_np, class_+"("+score+")", (int(xmin*width), int(ymin*height-4)), font, fontsize, color, fontweight, cv2.LINE_AA)
+      #cv2.imshow('image',image_np)
+      #cv2.waitKey(0)
+      #cv2.destroyAllWindows()
+      cv2.imwrite(os.path.join(FLAGS.save_path,image_path).replace('test','new_test'),image_np)
+
+
+      #ENDNEW
+
+
+      #plt.savefig(os.path.join(FLAGS.save_path,image_path), format='png', bbox_inches='tight')
 
 
 if __name__ == '__main__':
