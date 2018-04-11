@@ -26,12 +26,12 @@ FLAGS = flags.FLAGS
 
 # Add more class labels as needed, make sure to start at 1
 def class_text_to_int(row_label):
-  if row_label == 'cylinder':
+  if row_label == 'rat':
     return 1
-  if row_label == 'sphere':
-    return 2 
-  if row_label == 'box':
-    return 3 
+#  if row_label == 'sphere':
+#    return 2 
+#  if row_label == 'box':
+#    return 3 
   else:
     None
 
@@ -84,7 +84,7 @@ def create_tf_example(group, path):
 
 def main(_):
 #    for i in ['test', 'train']:
-  writer = tf.python_io.TFRecordWriter(os.path.join(FLAGS.data_path,'train.record'))
+  writer = tf.python_io.TFRecordWriter(os.path.join(FLAGS.data_path,'rat_train.record'))
   path = FLAGS.images_path
   examples = pd.read_csv(FLAGS.csv_path)
   grouped = split(examples, 'filename')

@@ -37,7 +37,7 @@ def main(_):
 #    for i in ['test', 'train']:
   path_to_ckpt = 'object_detection_graph/frozen_inference_graph.pb'
   path_to_labels = 'data/label_map.pbtxt'
-  num_classes = 3
+  num_classes = 1
   path_to_test_images_dir= FLAGS.images_path
   test_images_path = os.listdir(path_to_test_images_dir)
   img_size = (12,12)
@@ -67,8 +67,8 @@ def main(_):
             [detection_boxes, detection_scores, detection_classes, num_detections],
             feed_dict={image_tensor: image_np_expanded})
 
-      width=1920
-      height=1080
+      width=1600
+      height=1200
       #NEW
 
       font = cv2.FONT_HERSHEY_PLAIN
@@ -88,7 +88,7 @@ def main(_):
           continue
 
         if classes_text[i]==1:
-          class_='cylinder'
+          class_='rat'
           color=(0,255,0)
         elif classes_text[i]==2:
           class_='sphere'
@@ -101,7 +101,7 @@ def main(_):
       #cv2.imshow('image',image_np)
       #cv2.waitKey(0)
       #cv2.destroyAllWindows()
-      cv2.imwrite(os.path.join(FLAGS.save_path,image_path).replace('test','new_test'),image_np)
+      cv2.imwrite(os.path.join(FLAGS.save_path,image_path),image_np[...,::-1])
 
 
       #ENDNEW
